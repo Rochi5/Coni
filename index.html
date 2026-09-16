@@ -75,7 +75,7 @@ Feliz cumple a mi amiga &lt;3
 <body>
   <h1>🎉 ¡Feliz Cumpleaños! 🎂</h1>
   <div class="card">
-    <img src="Coni_foto.jpg" alt="Foto de Coni">
+    <img src="Coni.png" alt="Foto de Coni">
     <p>Inserta tu apodo:</p>
     <input type="text" id="apodo">
     <button onclick="verificar()">Enviar</button>
@@ -129,7 +129,7 @@ Feliz cumple a mi amiga &lt;3
       document.getElementById("juegoMensaje").innerHTML = "";
       document.getElementById("retryBtn").style.display = "none";
       if(game) clearInterval(game);
-      game = setInterval(draw, 600); // más lento y jugable
+      game = setInterval(draw, 400); // velocidad ajustada
     }
 
     function reiniciarJuego() {
@@ -187,7 +187,6 @@ Feliz cumple a mi amiga &lt;3
       }
     }
 
-    // 🔑 Bloqueamos el scroll de la página con preventDefault
     document.addEventListener("keydown", function(event) {
       if(["ArrowLeft","ArrowUp","ArrowRight","ArrowDown"].includes(event.key)) {
         event.preventDefault(); // evita que se mueva la página
@@ -200,3 +199,4 @@ Feliz cumple a mi amiga &lt;3
   </script>
 </body>
 </html>
+
