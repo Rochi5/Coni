@@ -99,7 +99,7 @@ Feliz cumple a mi amiga &lt;3
   </div>
 
   <!-- 🎶 Música de fondo -->
-  <audio id="musicaFondo" src="TXT.mp3" loop></audio>
+  <audio id="musicaFondo" src="TXT.mp3" loop preload="auto"></audio>
 
   <script>
     let canvas, ctx, box, snake, direction, food, score, game;
@@ -113,7 +113,11 @@ Feliz cumple a mi amiga &lt;3
         
         // Música de fondo con catch para evitar bloqueo
         let musica = document.getElementById("musicaFondo");
-        musica.play().catch(err => console.log("El navegador bloqueó la música:", err));
+        musica.play().then(() => {
+          console.log("La música empezó correctamente");
+        }).catch(err => {
+          console.log("El navegador bloqueó la música:", err);
+        });
         
         iniciarJuego();
       } else {
