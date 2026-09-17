@@ -35,10 +35,11 @@ Feliz cumple a mi amiga &lt;3
 
   <script>
     function verificar() {
-      const apodo = document.getElementById("apodo").value.trim();
-      if (apodo === "Coni") {
+      // normaliza el apodo a minúsculas y quita espacios
+      const apodo = document.getElementById("apodo").value.trim().toLowerCase();
+      if (apodo === "coni") {
         document.getElementById("mensaje").innerHTML = "💖 ¡Feliz cumple Coni! 💖";
-        document.getElementById("juego").style.display = "block"; // aquí se muestra el juego
+        document.getElementById("juego").style.display = "block"; // muestra el juego
         const musica = document.getElementById("musicaFondo");
         musica.play().catch(error => {
           console.log("El navegador bloqueó la música:", error);
@@ -57,4 +58,3 @@ Feliz cumple a mi amiga &lt;3
   </script>
 </body>
 </html>
-
