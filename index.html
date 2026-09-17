@@ -98,6 +98,9 @@ Feliz cumple a mi amiga &lt;3
     </div>
   </div>
 
+  <!-- 🎶 Música de fondo -->
+  <audio id="musicaFondo" src="TXT.mp3" loop></audio>
+
   <script>
     let canvas, ctx, box, snake, direction, food, score, game;
 
@@ -107,6 +110,7 @@ Feliz cumple a mi amiga &lt;3
         document.getElementById("mensaje").innerHTML = 
           "✨ FELIZ CUMPLE AMIGA 💖<br>TE QUIERO MUCHO 🎂🎶";
         document.getElementById("gameArea").style.display = "flex";
+        document.getElementById("musicaFondo").play(); // arranca la música
         iniciarJuego();
       } else {
         document.getElementById("mensaje").innerHTML = 
@@ -199,4 +203,3 @@ Feliz cumple a mi amiga &lt;3
   </script>
 </body>
 </html>
-
