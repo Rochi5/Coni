@@ -82,6 +82,9 @@ Feliz cumple a mi amiga &lt;3
     <p id="mensaje"></p>
   </div>
 
+  <!-- 🎵 Sonido de fondo -->
+  <audio id="musicaFondo" src="TXT.mp3" loop preload="auto"></audio>
+
   <div id="gameArea">
     <div>
       <canvas id="snakeCanvas" width="300" height="300"></canvas>
@@ -92,111 +95,3 @@ Feliz cumple a mi amiga &lt;3
     <div id="tutorial">
       <h3>📖 Cómo jugar:</h3>
       <p>Usa las flechas del teclado ⬅️ ⬆️ ➡️ ⬇️ para mover la serpiente.</p>
-      <p>Come la comida verde 🍏 para ganar puntos.</p>
-      <p>Si chocas contra los bordes o contigo misma 💀 → Game Over.</p>
-      <p>Al llegar a 5 puntos 🎉 → ¡Sorpresa especial!</p>
-    </div>
-  </div>
-
-  <script>
-    let canvas, ctx, box, snake, direction, food, score, game;
-
-    function verificar() {
-      let apodo = document.getElementById("apodo").value.toLowerCase();
-      if(apodo === "coni") {
-        document.getElementById("mensaje").innerHTML = 
-          "✨ FELIZ CUMPLE AMIGA 💖<br>TE QUIERO MUCHO 🎂🎶";
-        document.getElementById("gameArea").style.display = "flex";
-        iniciarJuego();
-      } else {
-        document.getElementById("mensaje").innerHTML = 
-          "❌ Ese no es el apodo correcto...";
-      }
-    }
-
-    function iniciarJuego() {
-      canvas = document.getElementById("snakeCanvas");
-      ctx = canvas.getContext("2d");
-      box = 15;
-      snake = [{x: 9*box, y: 9*box}];
-      direction = "RIGHT";
-      food = {
-        x: Math.floor(Math.random()*20)*box,
-        y: Math.floor(Math.random()*20)*box
-      };
-      score = 0;
-      document.getElementById("score").innerHTML = "⭐ Puntos: " + score;
-      document.getElementById("juegoMensaje").innerHTML = "";
-      document.getElementById("retryBtn").style.display = "none";
-      if(game) clearInterval(game);
-      game = setInterval(draw, 600); // más lento y jugable
-    }
-
-    function reiniciarJuego() {
-      iniciarJuego();
-    }
-
-    function draw() {
-      ctx.fillStyle = "#fafafa";
-      ctx.fillRect(0,0,300,300);
-
-      for(let i=0; i<snake.length; i++) {
-        ctx.fillStyle = (i===0) ? "#ff0066" : "#333";
-        ctx.fillRect(snake[i].x, snake[i].y, box, box);
-        ctx.strokeStyle = "#fff";
-        ctx.strokeRect(snake[i].x, snake[i].y, box, box);
-      }
-
-      ctx.fillStyle = "#00cc00";
-      ctx.fillRect(food.x, food.y, box, box);
-
-      let snakeX = snake[0].x;
-      let snakeY = snake[0].y;
-
-      if(direction === "LEFT") snakeX -= box;
-      if(direction === "UP") snakeY -= box;
-      if(direction === "RIGHT") snakeX += box;
-      if(direction === "DOWN") snakeY += box;
-
-      if(snakeX === food.x && snakeY === food.y) {
-        score++;
-        document.getElementById("score").innerHTML = "⭐ Puntos: " + score;
-        food = {
-          x: Math.floor(Math.random()*20)*box,
-          y: Math.floor(Math.random()*20)*box
-        };
-      } else {
-        snake.pop();
-      }
-
-      let newHead = {x: snakeX, y: snakeY};
-      snake.unshift(newHead);
-
-      if(snakeX < 0 || snakeY < 0 || snakeX >= 300 || snakeY >= 300 ||
-         snake.slice(1).some(seg => seg.x === snakeX && seg.y === snakeY)) {
-        clearInterval(game);
-        document.getElementById("juegoMensaje").innerHTML = "💀 Game Over";
-        document.getElementById("retryBtn").style.display = "inline-block";
-      }
-
-      if(score === 5) {
-        document.getElementById("juegoMensaje").innerHTML = 
-          "🎉 FELICITACIONES. Te ganaste algo hecho por Fiore <3 🎁";
-        clearInterval(game);
-        document.getElementById("retryBtn").style.display = "inline-block";
-      }
-    }
-
-    // 🔑 Bloqueamos el scroll de la página con preventDefault
-    document.addEventListener("keydown", function(event) {
-      if(["ArrowLeft","ArrowUp","ArrowRight","ArrowDown"].includes(event.key)) {
-        event.preventDefault(); // evita que se mueva la página
-      }
-      if(event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-      if(event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-      if(event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
-      if(event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
-    });
-  </script>
-</body>
-</html>
