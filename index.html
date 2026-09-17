@@ -4,94 +4,58 @@ Feliz cumple a mi amiga &lt;3
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>🎉 Feliz Cumple Coni 🎂</title>
+  <title>Feliz Cumpleaños Coni</title>
   <style>
     body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      color: #333;
+      font-family: Arial, sans-serif;
+      background-color: #fce4ec;
     }
-    .card {
+    #juego {
+      display: none; /* oculto al inicio */
       margin-top: 20px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      display: inline-block;
-    }
-    img {
-      width: 250px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-    }
-    #gameArea {
-      display: none;
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 30px;
-    }
-    #snakeCanvas {
-      border: 3px solid #ff6f61;
-      background: #fafafa;
-    }
-    #mensaje {
-      font-size: 2em;
-      font-weight: bold;
-      color: #ff0066;
-      margin-top: 15px;
-      text-shadow: 2px 2px #fff;
-    }
-    #score {
-      font-size: 1.3em;
-      color: #0066ff;
-      margin-top: 10px;
-    }
-    #juegoMensaje {
-      font-size: 1.2em;
-      margin-top: 10px;
-      color: #333;
-    }
-    #retryBtn {
-      display: none;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #ff6f61;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    #tutorial {
-      font-size:1.1em;
-      color:#444;
-      text-align:left;
-      max-width:200px;
     }
   </style>
 </head>
 <body>
-  <h1>🎉 ¡Feliz Cumpleaños! 🎂</h1>
-  <div class="card">
-    <img src="Coni_foto.jpg" alt="Foto de Coni">
-    <p>Inserta tu apodo:</p>
-    <input type="text" id="apodo">
-    <button onclick="verificar()">Enviar</button>
-    <p id="mensaje"></p>
-  </div>
+  <h1>🎉 Feliz Cumpleaños Coni 🎉</h1>
+  <p>Inserta tu apodo para comenzar:</p>
+  <input type="text" id="apodo" placeholder="Inserta tu apodo">
+  <button onclick="verificar()">Enviar</button>
 
-  <!-- 🎵 Sonido de fondo -->
   <audio id="musicaFondo" src="TXT.mp3" loop preload="auto"></audio>
 
-  <div id="gameArea">
-    <div>
-      <canvas id="snakeCanvas" width="300" height="300"></canvas>
-      <p id="score"></p>
-      <p id="juegoMensaje"></p>
-      <button id="retryBtn" onclick="reiniciarJuego()">🔄 Reintentar</button>
-    </div>
-    <div id="tutorial">
-      <h3>📖 Cómo jugar:</h3>
-      <p>Usa las flechas del teclado ⬅️ ⬆️ ➡️ ⬇️ para mover la serpiente.</p>
+  <div id="mensaje"></div>
+  <div id="juego">
+    <h2>🎮 Mini Juego 🎮</h2>
+    <p>Haz clic en la imagen para ganar puntos.</p>
+    <img src="Coni.png" alt="Coni" width="200" onclick="sumarPuntos()">
+    <p>Puntos: <span id="puntos">0</span></p>
+  </div>
+
+  <script>
+    function verificar() {
+      // normaliza el apodo a minúsculas y quita espacios
+      const apodo = document.getElementById("apodo").value.trim().toLowerCase();
+      if (apodo === "coni") {
+        document.getElementById("mensaje").innerHTML = "💖 ¡Feliz cumple Coni! 💖";
+        document.getElementById("juego").style.display = "block"; // muestra el juego
+        const musica = document.getElementById("musicaFondo");
+        musica.play().catch(error => {
+          console.log("El navegador bloqueó la música:", error);
+        });
+      } else {
+        document.getElementById("mensaje").innerHTML = "No... ese no  es";
+        document.getElementById("juego").style.display = "none"; // oculta si no es Coni
+      }
+    }
+
+    let puntos = 0;
+    function sumarPuntos() {
+      puntos++;
+      document.getElementById("puntos").innerText = puntos;
+    }
+  </script>
+</body>
+</html>
+
