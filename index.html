@@ -110,7 +110,11 @@ Feliz cumple a mi amiga &lt;3
         document.getElementById("mensaje").innerHTML = 
           "✨ FELIZ CUMPLE AMIGA 💖<br>TE QUIERO MUCHO 🎂🎶";
         document.getElementById("gameArea").style.display = "flex";
-        document.getElementById("musicaFondo").play(); // arranca la música
+        
+        // Música de fondo con catch para evitar bloqueo
+        let musica = document.getElementById("musicaFondo");
+        musica.play().catch(err => console.log("El navegador bloqueó la música:", err));
+        
         iniciarJuego();
       } else {
         document.getElementById("mensaje").innerHTML = 
@@ -203,3 +207,4 @@ Feliz cumple a mi amiga &lt;3
   </script>
 </body>
 </html>
+
