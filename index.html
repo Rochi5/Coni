@@ -33,7 +33,7 @@ Feliz cumple a mi amiga &lt;3
   <div id="mensaje"></div>
   <div id="juego">
     <h2>🎮 Mini Juego 🎮</h2>
-    <p id="instrucciones">Usa las flechas del teclado para mover y haz clic en la imagen para ganar puntos.</p>
+    <p id="instrucciones">Haz clic en la imagen para ganar puntos.</p>
     <img id="imagenJuego" src="Coni.png" alt="Coni" width="200" onclick="sumarPuntos()">
     <p>Puntos: <span id="puntos">0</span></p>
     <button onclick="reiniciarJuego()">🔄 Reintentar</button>
@@ -44,7 +44,7 @@ Feliz cumple a mi amiga &lt;3
       const apodo = document.getElementById("apodo").value.trim();
       if (apodo === "Coni") {
         document.getElementById("mensaje").innerHTML = "💖 ¡Feliz cumple Coni! 💖";
-        document.getElementById("juego").style.display = "block";
+        document.getElementById("juego").style.display = "block"; // <-- aquí se muestra el juego
         const musica = document.getElementById("musicaFondo");
         musica.play().then(() => {
           console.log("La música empezó correctamente");
@@ -53,6 +53,7 @@ Feliz cumple a mi amiga &lt;3
         });
       } else {
         document.getElementById("mensaje").innerHTML = "Ese no es el apodo correcto 😅";
+        document.getElementById("juego").style.display = "none"; // oculta el juego si el apodo no es correcto
       }
     }
 
